@@ -16,7 +16,7 @@ matches:
 
   # But matches can also be dynamic:
 
-  # Print the current date
+  # Print today's date
   - trigger: ":today"
     replace: "{{today}}"
     vars:
@@ -25,7 +25,7 @@ matches:
         params:
           format: "%m/%d/%Y"
 
-  # Print the output of a shell command
+  # Print the current time
   - trigger: ":now"
     replace: "{{now}}"
     vars:
@@ -33,5 +33,16 @@ matches:
         type: date
         params:
           format: "%H:%M"
+          
+  # Print the current ip address
+  - trigger: ":ip"
+    replace: "{{ip}}"
+    vars:
+      - name: ip
+        type: shell
+        params:
+          cmd: "curl 'https://api.ipify.org'"
+          shell: wsl
+
 
   # And much more! For more information, visit the docs: https://espanso.org/docs/
